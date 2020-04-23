@@ -1,6 +1,7 @@
+# Importing libraries
 import numpy as np
 
-
+# Creating ErrorCalculator class
 class ErrorCalculator:
 
     def __init__(self, resid, stand_res, mse, rmse, y, y_pred):
@@ -11,18 +12,22 @@ class ErrorCalculator:
         self.y_pred = np.array(y_pred)
         self.y = np.array(y)
 
+    # Method to compute the residuals
     def get_residuals(self):
         self.resid = self.y - self.y_pred
         return self.resid
 
+    # Method to compute the standard residuals
     def get_standardised_residuals(self):
         self.stand_res = (self.y - self.y_pred) / (self.y_pred)**0.5
         return self.stand_res
 
+    # Method to compute the Mean Squared Error
     def get_mse(self):
         self.mse = mse(self.y, self.y_pred)
         return self.mse
 
+    # Method to compute the Root Mean Squared Error
     def get_rmse(self):
         self.rmse = mse(self.y, self.y_pred, squared=False)
         return self.rmse
