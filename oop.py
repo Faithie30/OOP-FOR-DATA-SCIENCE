@@ -4,13 +4,14 @@ import numpy as np
 # Creating ErrorCalculator class
 class ErrorCalculator:
 
+    # Assigning values to object properties
     def __init__(self, resid, stand_res, mse, rmse, y, y_pred):
         self.resid = resid
         self.stand_res = stand_res
         self.mse = mse
         self.rmse = rmse
-        self.y_pred = np.array(y_pred)
         self.y = np.array(y)
+        self.y_pred = np.array(y_pred)
 
     # Method to compute the residuals
     def get_residuals(self):
