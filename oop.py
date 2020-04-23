@@ -1,5 +1,3 @@
-from sklearn.metrics import mean_squared_error as mse
-import matplotlib.pyplot as plt
 import numpy as np
 
 
