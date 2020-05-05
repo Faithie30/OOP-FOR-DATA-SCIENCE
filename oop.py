@@ -5,9 +5,9 @@ import numpy as np
 class ErrorCalculator:
 
     # Assigning values to object properties
-    def __init__(self, resid, stand_res, mse, rmse, y, y_pred):
-        self.resid = resid
-        self.stand_res = stand_res
+    def __init__(self, residuals, standard_res, mse, rmse, y, y_pred):
+        self.residuals = residuals
+        self.standard_res = standard_res
         self.mse = mse
         self.rmse = rmse
         self.y = np.array(y)
@@ -15,13 +15,13 @@ class ErrorCalculator:
 
     # Method to compute the residuals
     def get_residuals(self):
-        self.resid = self.y - self.y_pred
-        return self.resid
+        self.residuals = self.y - self.y_pred
+        return self.residuals
 
     # Method to compute the standard residuals
     def get_standardised_residuals(self):
-        self.stand_res = (self.y - self.y_pred) / (self.y_pred)**0.5
-        return self.stand_res
+        self.standard_res = (self.y - self.y_pred) / (self.y_pred)**0.5
+        return self.standard_res
 
     # Method to compute the Mean Squared Error
     def get_mse(self):
@@ -32,43 +32,38 @@ class ErrorCalculator:
     def get_rmse(self):
         self.rmse = mse(self.y, self.y_pred, squared=False)
         return self.rmse
-  
-    #Method that prints the average, minimum and maximum of the standardised residuals, as well as the MSE and RMSE.
+
+    # Method that prints the average, minimum and maximum of the
+    # standardised residuals, as well as the MSE and RMSE.
     def error_summary(self):
-        stand_resid_min = min(self.stand_res)
-        stand_resid_max = max(self.stand_res)
-        rmse_min = min(self.rmse)
-        rmse_max = max(self.rmse)
-        mse_min = min(self.mse)
-        mse_max = max(self.mse)
-        print(f'standard residual: {stand_resid_min}')
-        print(f'standard residual: {stand_resid_max}')
-        print(f'min rmse: {rmse_min}')
-        print(f'max rmse: {rmse_max}')
-        print(f'min mse: {mse_min}')
-        print(f'max mse: {mse_max}')
 
+        print(f'the average standard residual: {standard_res.mean()}')
+        print(f'the minimum standard residual: {min(standard_res)}')
+        print(f'the maximum standard residual: {max(standard_res)}')
+        print(f'The Root Mean Squared Error: {rmse}')
+        print(f'The Root Mean Squared Error: {mse}')
 
+# Creating Plotter class
 class Plotter(ErrorCalculator):
 
     def plot(self):
-        plt.hist(self.resid)
-        plt.title('The distribution of residuals')
+        plt.hist(self.residuals)
+        plt.title('Distribution of residuals')
         plt.xlabel('Residuals')
-        plt.ylabel('Frequency')
+        plt.ylabel('Distribution')
         plt.show()
         return plt.show()
 
-
+# Creating HistogramPlotter class
 class HistogramPlotter(Plotter):
 
     Plotter.plot()
     super()
 
-
+# Creating ScatterPlotter class
 class ScatterPlotter(Plotter):
     def scatter(self):
-        plt.scatter(self.y_pred, self.resid)
+        plt.scatter(self.y_pred, self.residuals)
         plt.xlabel('Observed values')
         plt.ylabel('predicted values')
         plt.title('Observed values vs predicted values')
