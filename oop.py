@@ -52,7 +52,7 @@ class Plotter(ErrorCalculator):
 
     def plot(self):
         plt.hist(self.resid)
-        plt.title('Distribution of residuals')
+        plt.title('The distribution of residuals')
         plt.xlabel('Residuals')
         plt.ylabel('Distribution')
         plt.show()
