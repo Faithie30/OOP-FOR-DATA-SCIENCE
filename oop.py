@@ -32,7 +32,8 @@ class ErrorCalculator:
     def get_rmse(self):
         self.rmse = mse(self.y, self.y_pred, squared=False)
         return self.rmse
-
+  
+    #Method that prints the average, minimum and maximum of the standardised residuals, as well as the MSE and RMSE.
     def error_summary(self):
         stand_resid_min = min(self.stand_res)
         stand_resid_max = max(self.stand_res)
