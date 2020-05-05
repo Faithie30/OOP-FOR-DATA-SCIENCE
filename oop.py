@@ -54,7 +54,7 @@ class Plotter(ErrorCalculator):
         plt.hist(self.resid)
         plt.title('The distribution of residuals')
         plt.xlabel('Residuals')
-        plt.ylabel('Distribution')
+        plt.ylabel('Frequency')
         plt.show()
         return plt.show()
 
